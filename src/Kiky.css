@@ -1,0 +1,33 @@
+.Kiky {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #f0e68c;
+  text-align: center;
+  text-shadow: 0 0 8px #f0e68c;
+  opacity: 0;
+  animation: fadeInRise 5s forwards;
+  animation-delay: 2s;
+}
+
+@keyframes fadeInRise {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 0.8;
+    transform: translate(-50%, 0);
+  }
+}
+
+.Kiky h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.Kiky p {
+  font-size: 1.2rem;
+  margin: 0.2rem 0;
+}

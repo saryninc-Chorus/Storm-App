@@ -1,0 +1,30 @@
+.Navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a1a2e;
+  padding: 1rem 2rem;
+  color: white;
+}
+
+.Navbar-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.Navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.Navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.Navbar-links a:hover {
+  color: #e94560;
+}
