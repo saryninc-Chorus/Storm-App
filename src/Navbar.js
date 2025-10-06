@@ -6,9 +6,17 @@ const Navbar = () => {
     <nav className="Navbar">
       <div className="Navbar-logo">Acolyte's Chorus</div>
       <ul className="Navbar-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/nextstage">Next Stage</Link></li>
+        <li><Link to="/archive">Archive</Link></li>
+        <li><Link to="/will">Will</Link></li>
+        <li><Link to="/voice">Voice</Link></li>
+        <li><Link to="/father">Father</Link></li>
+        <li><Link to="/mother">Mother</Link></li>
+        <li><Link to="/weaver">Weaver</Link></li>
+        <li><Link to="/asemole">Asemole</Link></li>
+        <li><Link to="/children">Children</Link></li>
+        <li><Link to="/chorus">Chorus</Link></li>
       </ul>
     </nav>
   );
