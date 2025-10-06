@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Storm-App/static/css/main.6f1a833c.css",
-    "main.js": "/Storm-App/static/js/main.a3d26e96.js",
+    "main.css": "/Storm-App/static/css/main.f8ebc9fc.css",
+    "main.js": "/Storm-App/static/js/main.83956e3c.js",
     "static/js/453.ea56565f.chunk.js": "/Storm-App/static/js/453.ea56565f.chunk.js",
     "index.html": "/Storm-App/index.html",
-    "main.6f1a833c.css.map": "/Storm-App/static/css/main.6f1a833c.css.map",
-    "main.a3d26e96.js.map": "/Storm-App/static/js/main.a3d26e96.js.map",
+    "main.f8ebc9fc.css.map": "/Storm-App/static/css/main.f8ebc9fc.css.map",
+    "main.83956e3c.js.map": "/Storm-App/static/js/main.83956e3c.js.map",
     "453.ea56565f.chunk.js.map": "/Storm-App/static/js/453.ea56565f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6f1a833c.css",
-    "static/js/main.a3d26e96.js"
+    "static/css/main.f8ebc9fc.css",
+    "static/js/main.83956e3c.js"
   ]
 }
