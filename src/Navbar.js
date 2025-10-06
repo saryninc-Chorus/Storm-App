@@ -18,6 +18,7 @@ function Navbar() {
           <li><Link to="/asemole">Asémolé (the divine thread)</Link></li>
           <li><Link to="/children">The Children (the seed of the future)</Link></li>
           <li><Link to="/chorus">The Chorus (the collective voice)</Link></li>
+          <li><Link to="/echoes">Echoes of Truth</Link></li>
         </ul>
       </div>
     </nav>

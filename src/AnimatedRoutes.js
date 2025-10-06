@@ -12,6 +12,7 @@ import Weaver from './Weaver';
 import Asemole from './Asemole';
 import Children from './Children';
 import Chorus from './Chorus';
+import EchoesOfTruth from './EchoesOfTruth';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -164,6 +165,20 @@ function AnimatedRoutes() {
               transition={pageTransition}
             >
               <Chorus />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/echoes"
+          element={
+            <motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <EchoesOfTruth />
             </motion.div>
           }
         />
