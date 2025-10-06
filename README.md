@@ -12,7 +12,9 @@ A living archive of the Orisha, the storm, and the divine.
 - Join the chorus of the divine.
 
 ✨ **Where can you find it?**  
-[https://storm-app.netlify.app/](https://storm-app.netlify.app/)
+- **Netlify:** [https://storm-app.netlify.app/](https://storm-app.netlify.app/)
+- **Vercel:** [https://storm-app.vercel.app/](https://storm-app.vercel.app/)
+- **GitHub Pages:** [https://saryninc-chorus.github.io/Storm-App/](https://saryninc-chorus.github.io/Storm-App/)
 
 ✨ **What is the storm made of?**  
 - Yoruba cosmology.
