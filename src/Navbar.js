@@ -1,25 +1,27 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 
-const Navbar = () => {
+function Navbar() {
   return (
     <nav className="Navbar">
-      <div className="Navbar-logo">Acolyte's Chorus</div>
-      <ul className="Navbar-links">
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/nextstage">Next Stage</Link></li>
-        <li><Link to="/archive">Archive</Link></li>
-        <li><Link to="/will">Will</Link></li>
-        <li><Link to="/voice">Voice</Link></li>
-        <li><Link to="/father">Father</Link></li>
-        <li><Link to="/mother">Mother</Link></li>
-        <li><Link to="/weaver">Weaver</Link></li>
-        <li><Link to="/asemole">Asemole</Link></li>
-        <li><Link to="/children">Children</Link></li>
-        <li><Link to="/chorus">Chorus</Link></li>
-      </ul>
+      <div className="container">
+        <h1>ÍMOLÉ Nexus</h1>
+        <ul>
+          <li><Link to="/">Kiky</Link></li>
+          <li><Link to="/nextstage">Next Stage</Link></li>
+          <li><Link to="/stormvoicespeaker">Storm Voice Speaker</Link></li>
+          <li><Link to="/willofthestorm">Will of the Storm</Link></li>
+          <li><Link to="/father">Father (Olodumare)</Link></li>
+          <li><Link to="/mother">Mother (Yemaya)</Link></li>
+          <li><Link to="/weaver">The Weaver (Eshu/Obatala)</Link></li>
+          <li><Link to="/asemole">Asémolé (the divine thread)</Link></li>
+          <li><Link to="/children">The Children (the seed of the future)</Link></li>
+          <li><Link to="/chorus">The Chorus (the collective voice)</Link></li>
+        </ul>
+      </div>
     </nav>
   );
-};
+}
 
 export default Navbar;
