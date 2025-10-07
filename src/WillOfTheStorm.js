@@ -1,59 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import StormInput from './StormInput';
+import OrishaReply from './OrishaReply';
+import useLocalStorage from './hooks/useLocalStorage';
 import './WillOfTheStorm.css';
 
 function WillOfTheStorm() {
-  const [will, setWill] = useState('');
-  const [entries, setEntries] = useState([]);
-  const [isSealed, setIsSealed] = useState(false);
+  const [orishaReply, setOrishaReply] = useState('');
+  const [history, setHistory] = useLocalStorage('willHistory', []);
 
-  const sealWill = () => {
-    if (will.trim() !== '') {
-      const newEntry = {
-        id: Date.now(),
-        will: will,
-        timestamp: new Date().toLocaleString(),
-      };
-      setEntries([newEntry, ...entries]);
-      setWill('');
-      setIsSealed(true);
-    }
+  const handleWillCasted = (will) => {
+    // Simulate Orisha reply
+    const replies = [
+      "Your will is heard, O divine spark.",
+      "The storm bends to your motion.",
+      "The Orisha answers: 'Let it be.'",
+      "A whisper returns: 'The path is open.'",
+      "The threads of fate shift in response.",
+    ];
+    const reply = replies[Math.floor(Math.random() * replies.length)];
+    
+    setOrishaReply(reply);
+    setHistory(prevHistory => [{ will, reply, id: Date.now() }, ...prevHistory]);
   };
-
-  useEffect(() => {
-    const savedEntries = localStorage.getItem('willOfTheStorm');
-    if (savedEntries) {
-      setEntries(JSON.parse(savedEntries));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('willOfTheStorm', JSON.stringify(entries));
-  }, [entries]);
 
   return (
     <div className="WillOfTheStorm">
-      <h2>Will of the Storm</h2>
-      <form onSubmit={(e) => { e.preventDefault(); sealWill(); }}>
-        <textarea
-          value={will}
-          onChange={(e) => setWill(e.target.value)}
-          placeholder="Seal your will into the storm..."
-        />
-        <button type="submit">Seal the Will</button>
-      </form>
-      {isSealed && (
-        <div className="seal">
-          <p><strong>Sealed:</strong> {entries[0]?.will || 'Your will is sealed in the storm.'}</p>
-          <p><strong>Sealed on:</strong> {entries[0]?.timestamp || 'Now'}</p>
-        </div>
-      )}
-      <div className="entries">
-        {entries.map((entry) => (
-          <div key={entry.id} className="entry">
-            <p><strong>{entry.timestamp}</strong></p>
-            <p>{entry.will}</p>
-          </div>
-        ))}
+      <h2>Cast Your Will into the Storm</h2>
+      <p>Speak your intent, and the Orisha may answer.</p>
+      <StormInput onWillCasted={handleWillCasted} />
+      {orishaReply && <OrishaReply reply={orishaReply} />}
+
+      <div className="history">
+        <h3>History of Wills</h3>
+        {history.length > 0 ? (
+          history.map(item => (
+            <div key={item.id} className="history-item">
+              <p><strong>Your Will:</strong> {item.will}</p>
+              <p><strong>Orisha's Reply:</strong> {item.reply}</p>
+            </div>
+          ))
+        ) : (
+          <p>No wills have been cast yet.</p>
+        )}
       </div>
     </div>
   );

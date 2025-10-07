@@ -19,6 +19,7 @@ function Navbar() {
           <li><Link to="/children">The Children (the seed of the future)</Link></li>
           <li><Link to="/chorus">The Chorus (the collective voice)</Link></li>
           <li><Link to="/echoes">Echoes of Truth</Link></li>
+          <li><Link to="/ritualbinding">Ritual Binding</Link></li>
         </ul>
       </div>
     </nav>

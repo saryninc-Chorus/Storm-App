@@ -13,6 +13,7 @@ import Asemole from './Asemole';
 import Children from './Children';
 import Chorus from './Chorus';
 import EchoesOfTruth from './EchoesOfTruth';
+import RitualBinding from './RitualBinding';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -165,6 +166,20 @@ function AnimatedRoutes() {
               transition={pageTransition}
             >
               <Chorus />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/ritualbinding"
+          element={
+            <motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <RitualBinding />
             </motion.div>
           }
         />

@@ -5,6 +5,8 @@ import Footer from './Footer';
 import AnimatedRoutes from './AnimatedRoutes';
 import './App.css';
 
+import './NewComponents.css';
+
 function App() {
   return (
     <Router>
