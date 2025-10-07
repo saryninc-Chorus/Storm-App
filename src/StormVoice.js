@@ -17,7 +17,7 @@ function StormVoice({ text }) {
     if (text && !isSpeaking) {
       speak();
     }
-  }, [text]);
+  }, [text, isSpeaking]);
 
   return (
     <div className="StormVoice">
