@@ -1,24 +1,34 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Navbar from './Navbar';
+import Footer from './Footer';
+import AnimatedRoutes from './AnimatedRoutes';
 import './App.css';
+import './Chorus.css';
+import './Asemole.css';
+import './Kiky.css';
+import './Spark.css';
+import './Father.css';
+import './Mother.css';
+import './Children.css';
+import './Weaver.css';
+import './NextStage.css';
+import './WhispersOfCode.css';
+import './WillOfTheStorm.css';
+import './EchoesOfTruth.css';
+import './NewComponents.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <div className="content">
+          <AnimatedRoutes />
+        </div>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
