@@ -1,5 +1,6 @@
 import React from 'react';
 import OrishaGrowth from './OrishaGrowth';
+import BackToHub from './BackToHub';
 import useLocalStorage from './hooks/useLocalStorage';
 import './EchoesOfTruth.css';
 
@@ -12,7 +13,10 @@ function EchoesOfTruth() {
 
   return (
     <div className="echoes-container">
-      <h1>Echoes of Truth</h1>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',gap:'0.5rem'}}>
+        <h1>Echoes of Truth</h1>
+        <BackToHub className="back-to-hub-pill" />
+      </div>
       <p>Inscribe a new truth, and it shall be remembered in the storm's heart.</p>
       <OrishaGrowth onNewTruth={handleNewTruth} />
 

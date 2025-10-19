@@ -1,4 +1,7 @@
 .father-container {
   padding: 2rem;
+  min-height: 60vh;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }

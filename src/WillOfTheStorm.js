@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BackToHub from './BackToHub';
 import StormInput from './StormInput';
 import OrishaReply from './OrishaReply';
 import useLocalStorage from './hooks/useLocalStorage';
@@ -24,8 +25,11 @@ function WillOfTheStorm() {
   };
 
   return (
-    <div className="WillOfTheStorm">
-      <h2>Cast Your Will into the Storm</h2>
+    <div className="WillOfTheStorm cosmic-glow-faint">
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',gap:'0.5rem'}}>
+        <h2>Cast Your Will into the Storm</h2>
+        <BackToHub className="back-to-hub-pill" />
+      </div>
       <p>Speak your intent, and the Orisha may answer.</p>
       <StormInput onWillCasted={handleWillCasted} />
       {orishaReply && <OrishaReply reply={orishaReply} />}

@@ -1,0 +1,83 @@
+.profile-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+  background: linear-gradient(180deg, #0f172a 60%, #2563eb 100%);
+  color: #f3f4f6;
+  box-shadow: -2px 0 18px #0ea5e9;
+  z-index: 100;
+  padding: 2rem 1.5rem 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  font-family: 'Segoe UI', 'Ubuntu', sans-serif;
+  overflow-y: auto;
+  max-height: 100vh;
+}
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #fbbf24;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.profile-section label,
+.prefs-section label {
+  display: block;
+  margin-top: 0.5rem;
+  margin-bottom: 0.2rem;
+  font-weight: 500;
+}
+.profile-section input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #38bdf8;
+  margin-bottom: 0.5rem;
+  background: #1e293b;
+  color: #f3f4f6;
+}
+.avatar-preview {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 8px #0ea5e9;
+}
+.prefs-section select {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #38bdf8;
+  background: #1e293b;
+  color: #f3f4f6;
+  margin-bottom: 0.5rem;
+}
+.save-btn {
+  background: #fbbf24;
+  color: #0f172a;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #0ea5e9;
+}
+.session-section {
+  margin-top: 1.5rem;
+}
+.session-section ul {
+  list-style: none;
+  padding: 0;
+  font-size: 0.95rem;
+}
+.session-section li {
+  margin-bottom: 0.4rem;
+  color: #fbbf24;
+}

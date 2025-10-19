@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import BackToHub from './BackToHub';
 import './StormVoiceSpeaker.css';
 
 function StormVoiceSpeaker() {
@@ -24,8 +25,11 @@ function StormVoiceSpeaker() {
   }, [voice, isSpeaking]);
 
   return (
-    <div className="StormVoiceSpeaker">
-      <h2>Storm Voice Speaker</h2>
+    <div className="StormVoiceSpeaker cosmic-glow-faint">
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',gap:'0.5rem'}}>
+        <h2>Storm Voice Speaker</h2>
+        <BackToHub className="back-to-hub-pill" />
+      </div>
       <form onSubmit={(e) => { e.preventDefault(); speak(); }}>
         <textarea
           value={message}

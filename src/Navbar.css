@@ -28,3 +28,29 @@
 .Navbar-links a:hover {
   color: #e94560;
 }
+
+/* Bridge breadcrumb */
+.bridge-crumb {
+  font-size: 12px;
+  opacity: 0.85;
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(17,24,39,0.65);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.bridge-crumb button {
+  background: transparent;
+  color: #e5e7eb;
+  border: none;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 4px;
+}
+.bridge-crumb button:hover {
+  color: #fff;
+}

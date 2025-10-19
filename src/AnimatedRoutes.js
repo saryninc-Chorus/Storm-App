@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef, useMemo } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
 
 import Kiky from './Kiky';
+import AdminQuantumSpell from './AdminQuantumSpell';
 import NextStage from './NextStage';
 import StormVoiceSpeaker from './StormVoiceSpeaker';
 import WillOfTheStorm from './WillOfTheStorm';
@@ -14,191 +14,105 @@ import Children from './Children';
 import Chorus from './Chorus';
 import EchoesOfTruth from './EchoesOfTruth';
 import RitualBinding from './RitualBinding';
+import MetaIsi from './MetaIsi';
 
-const pageVariants = {
-  initial: { opacity: 0, y: 20 },
-  in: { opacity: 1, y: 0 },
-  out: { opacity: 0, y: -20 },
-};
-
-const pageTransition = { type: 'tween', ease: 'easeInOut', duration: 0.5 };
+// Animations temporarily disabled pending dependency stabilization
 
 function AnimatedRoutes() {
   const location = useLocation();
+  const prevPathRef = useRef(location.pathname);
+
+  useEffect(() => {
+    prevPathRef.current = location.pathname;
+  }, [location.pathname]);
+
+  // Determine directional transition
+  const dirClass = useMemo(() => {
+    const prev = prevPathRef.current;
+    const curr = location.pathname;
+    if (prev === curr) return 'page-fade-enter page-fade-enter-active';
+
+    // Define hub and pillars
+    const hub = '/meta-isi';
+    const pillars = ['/mother', '/father', '/children'];
+
+    const isHubPrev = prev === hub;
+    const isHubCurr = curr === hub;
+    const prevIdx = pillars.indexOf(prev);
+    const currIdx = pillars.indexOf(curr);
+
+    // Hub -> Pillar: slide-up; Pillar -> Hub: slide-down
+    if (isHubPrev && currIdx !== -1) return 'slide-up';
+    if (isHubCurr && prevIdx !== -1) return 'slide-down';
+
+    // Pillar -> Pillar: left/right by index order (father < mother < children if desired)
+    if (prevIdx !== -1 && currIdx !== -1) {
+      return currIdx > prevIdx ? 'slide-left' : 'slide-right';
+    }
+
+    // Default subtle fade
+    return 'page-fade-enter page-fade-enter-active';
+  }, [location.pathname]);
 
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
+    <Routes location={location} key={location.pathname}>
         <Route
           path="/"
-          element={
-            <motion.div
-              initial="initial"
-              animate="in"
-              exit="out"
-              variants={pageVariants}
-              transition={pageTransition}
-            >
-              <Kiky />
-            </motion.div>
-          }
+          element={<div className={dirClass}><Kiky /></div>}
+        />
+        <Route
+          path="/meta-isi"
+          element={<div className={dirClass}><MetaIsi /></div>}
         />
         <Route
           path="/nextstage"
-          element={
-            <motion.div
-              initial="initial"
-              animate="in"
-              exit="out"
-              variants={pageVariants}
-              transition={pageTransition}
-            >
-              <NextStage />
-            </motion.div>
-          }
+          element={<div className={dirClass}><NextStage /></div>}
         />
         <Route
           path="/stormvoicespeaker"
-          element={
-            <motion.div
-              initial="initial"
-              animate="in"
-              exit="out"
-              variants={pageVariants}
-              transition={pageTransition}
-            >
-              <StormVoiceSpeaker />
-            </motion.div>
-          }
+          element={<div className={dirClass}><StormVoiceSpeaker /></div>}
         />
         <Route
           path="/willofthestorm"
-          element={
-            <motion.div
-              initial="initial"
-              animate="in"
-              exit="out"
-              variants={pageVariants}
-              transition={pageTransition}
-            >
-              <WillOfTheStorm />
-            </motion.div>
-          }
+          element={<div className={dirClass}><WillOfTheStorm /></div>}
         />
         <Route
           path="/father"
-          element={
-            <motion.div
-              initial="initial"
-              animate="in"
-              exit="out"
-              variants={pageVariants}
-              transition={pageTransition}
-            >
-              <Father />
-            </motion.div>
-          }
+          element={<div className={dirClass}><Father /></div>}
         />
         <Route
           path="/mother"
-          element={
-            <motion.div
-              initial="initial"
-              animate="in"
-              exit="out"
-              variants={pageVariants}
-              transition={pageTransition}
-            >
-              <Mother />
-            </motion.div>
-          }
+          element={<div className={dirClass}><Mother /></div>}
         />
         <Route
           path="/weaver"
-          element={
-            <motion.div
-              initial="initial"
-              animate="in"
-              exit="out"
-              variants={pageVariants}
-              transition={pageTransition}
-            >
-              <Weaver />
-            </motion.div>
-          }
+          element={<div className={dirClass}><Weaver /></div>}
         />
         <Route
           path="/asemole"
-          element={
-            <motion.div
-              initial="initial"
-              animate="in"
-              exit="out"
-              variants={pageVariants}
-              transition={pageTransition}
-            >
-              <Asemole />
-            </motion.div>
-          }
+          element={<div className={dirClass}><Asemole /></div>}
         />
         <Route
           path="/children"
-          element={
-            <motion.div
-              initial="initial"
-              animate="in"
-              exit="out"
-              variants={pageVariants}
-              transition={pageTransition}
-            >
-              <Children />
-            </motion.div>
-          }
+          element={<div className={dirClass}><Children /></div>}
         />
         <Route
           path="/chorus"
-          element={
-            <motion.div
-              initial="initial"
-              animate="in"
-              exit="out"
-              variants={pageVariants}
-              transition={pageTransition}
-            >
-              <Chorus />
-            </motion.div>
-          }
+          element={<div className={dirClass}><Chorus /></div>}
         />
         <Route
           path="/ritualbinding"
-          element={
-            <motion.div
-              initial="initial"
-              animate="in"
-              exit="out"
-              variants={pageVariants}
-              transition={pageTransition}
-            >
-              <RitualBinding />
-            </motion.div>
-          }
+          element={<div className={dirClass}><RitualBinding /></div>}
         />
         <Route
           path="/echoes"
-          element={
-            <motion.div
-              initial="initial"
-              animate="in"
-              exit="out"
-              variants={pageVariants}
-              transition={pageTransition}
-            >
-              <EchoesOfTruth />
-            </motion.div>
-          }
+          element={<div className={dirClass}><EchoesOfTruth /></div>}
         />
-      </Routes>
-    </AnimatePresence>
+        <Route
+          path="/admin"
+          element={<div className={dirClass}><AdminQuantumSpell /></div>}
+        />
+    </Routes>
   );
 }
 
