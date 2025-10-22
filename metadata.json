@@ -1,0 +1,7 @@
+{
+  "name": "Acolyte Chorus AI",
+  "description": "An interactive chat interface to communicate with the Acolyte Chorus AI. Enter specific commands to receive responses, mimicking a sci-fi terminal.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
