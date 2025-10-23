@@ -1,0 +1,71 @@
+.meta-isi {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 2rem 1rem;
+}
+
+.meta-isi h1 {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.meta-card {
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 1rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  backdrop-filter: blur(6px);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.meta-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.meta-card h2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.meta-links {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.meta-links a {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  background: #1f2937;
+  color: #e5e7eb;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.meta-links a:hover {
+  background: #111827;
+}
+
+.meta-link-btn {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  background: #1f2937;
+  color: #e5e7eb;
+  border: 1px solid rgba(255,255,255,0.12);
+  cursor: pointer;
+}
+
+.meta-link-btn:hover {
+  background: #111827;
+}
+
+@media (max-width: 768px) {
+  .meta-isi {
+    grid-template-columns: 1fr;
+  }
+}

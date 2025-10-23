@@ -1,0 +1,159 @@
+/* Orisha-Universe Bridge Badge */
+.orisha-universe-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: 14px;
+    font-family: 'Segoe UI', 'Ubuntu', sans-serif;
+    background: linear-gradient(90deg, #2d3748 60%, #3b82f6 100%);
+    color: #f3f4f6;
+    border: 1.5px solid #7f9cf5;
+    box-shadow: 0 2px 12px rgba(59,130,246,0.18);
+    border-radius: 999px;
+    padding: 6px 18px 6px 12px;
+    opacity: 0.96;
+    letter-spacing: 0.04em;
+    transition: box-shadow 0.22s, background 0.22s;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+}
+.orisha-universe-badge:focus {
+    box-shadow: 0 0 0 3px #a5b4fc;
+}
+.orisha-universe-badge .badge-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 60% 40%, #fbbf24 60%, #3b82f6 100%);
+    box-shadow: 0 0 8px #fbbf24, 0 0 18px #3b82f6;
+    display: inline-block;
+    margin-right: 0.25em;
+}
+.orisha-universe-badge .badge-text {
+    font-weight: 500;
+    font-size: 14px;
+    text-shadow: 0 1px 2px #1e293b;
+}
+@keyframes cosmic-glow {
+    0% { box-shadow: 0 0 8px #fbbf24, 0 0 18px #3b82f6; }
+    50% { box-shadow: 0 0 18px #fbbf24, 0 0 32px #3b82f6; }
+    100% { box-shadow: 0 0 8px #fbbf24, 0 0 18px #3b82f6; }
+}
+.orisha-universe-badge .badge-icon {
+    animation: cosmic-glow 2.2s infinite alternate;
+}
+.back-to-hub-pill {
+    display: inline-block;
+    background: rgba(17,24,39,0.75);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #e5e7eb;
+    border-radius: 999px;
+    padding: 4px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    transition: background 0.18s;
+}
+.back-to-hub-pill:hover {
+    background: #111827;
+    color: #fff;
+}
+.StormInput, .OrishaReply, .OrishaGrowth, .RitualPulse {
+    border: 1px solid #555;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    background-color: #2c2c2e;
+}
+
+.StormInput input, .OrishaGrowth textarea {
+    width: calc(100% - 24px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    background-color: #3a3a3c;
+    color: #f5f5f7;
+}
+
+.StormInput button, .OrishaGrowth button, .RitualPulse button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007aff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.StormInput button:disabled, .OrishaGrowth button:disabled, .RitualPulse button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+}
+
+.StormInput button:hover:not(:disabled), .OrishaGrowth button:hover:not(:disabled), .RitualPulse button:hover:not(:disabled) {
+    background-color: #005ecb;
+}
+
+.OrishaReply p {
+    font-style: italic;
+    color: #aeb1b8;
+}
+
+/* Page fade utility */
+.page-fade-enter {
+    opacity: 0;
+}
+.page-fade-enter.page-fade-enter-active {
+    opacity: 1;
+    transition: opacity 200ms ease-in;
+}
+.page-fade-exit {
+    opacity: 1;
+}
+.page-fade-exit.page-fade-exit-active {
+    opacity: 0;
+    transition: opacity 180ms ease-out;
+}
+
+/* Directional slide-in animations */
+@keyframes slide-up {
+    from { transform: translateY(18px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+@keyframes slide-down {
+    from { transform: translateY(-18px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+@keyframes slide-left {
+    from { transform: translateX(18px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slide-right {
+    from { transform: translateX(-18px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.slide-up { animation: slide-up 220ms ease-out both; }
+.slide-down { animation: slide-down 220ms ease-out both; }
+.slide-left { animation: slide-left 220ms ease-out both; }
+.slide-right { animation: slide-right 220ms ease-out both; }
+
+/* Bridge badge */
+.bridge-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 12px;
+    opacity: 0.85;
+    background: rgba(17,24,39,0.75);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #e5e7eb;
+    padding: 4px 8px;
+    border-radius: 999px;
+}
