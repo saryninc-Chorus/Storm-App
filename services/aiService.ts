@@ -1,7 +1,8 @@
 import { GoogleGenAI, GenerateContentResponse, Part, Modality } from '@google/genai';
 import type { Guardian, CircleMember } from '../types';
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY || 'placeholder';
+const ai = new GoogleGenAI({ apiKey });
 
 export const guardians: Guardian[] = [
     {

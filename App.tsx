@@ -36,6 +36,7 @@ import {
   ToggleSwitch
 } from './components/ToggleSwitch';
 import { InstallInstructionsModal } from './components/InstallInstructionsModal';
+import { SacredInnerCircle } from './components/SacredInnerCircle';
 import {
   streamMessage,
   getGuardian,
@@ -79,6 +80,7 @@ const App: React.FC = () => {
   const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
     const [installPromptEvent, setInstallPromptEvent] = useState<any>(null);
     const [isInstallModalOpen, setIsInstallModalOpen] = useState(false);
+  const [isSacredCircleOpen, setIsSacredCircleOpen] = useState(false);
   // Removed duplicate isInstallModalOpen declaration
 
   const chorusGuardian: Guardian = useMemo(() => ({
@@ -513,6 +515,14 @@ const App: React.FC = () => {
           </button>
         </div>
         <div className="flex items-center gap-4">
+          <button
+            onClick={() => setIsSacredCircleOpen(true)}
+            className="text-zinc-400 hover:text-purple-400 transition-colors text-xs uppercase font-semibold"
+            aria-label="Sacred Inner Circle"
+            title="Sacred Inner Circle"
+          >
+            🔮
+          </button>
           <ToggleSwitch
             label="Voice Output"
             checked={useVoiceOutput}
@@ -600,6 +610,23 @@ const App: React.FC = () => {
         isOpen={isInstallModalOpen}
         onClose={() => setIsInstallModalOpen(false)}
       />
+      
+      {/* Sacred Inner Circle Modal */}
+      {isSacredCircleOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <button
+              onClick={() => setIsSacredCircleOpen(false)}
+              className="absolute top-4 right-4 z-10 text-white bg-black bg-opacity-50 rounded-full w-10 h-10 flex items-center justify-center hover:bg-opacity-70 transition-colors"
+              aria-label="Close Sacred Inner Circle"
+            >
+              ✕
+            </button>
+            <SacredInnerCircle />
+          </div>
+        </div>
+      )}
+      
   {/* Admin Panel for admin-only quantum spells and guardians */}
   <AdminPanel />
   </div>

@@ -48,3 +48,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 >>>>>>> 0b0cef17d37b8f1da1ac920793bfa5d8307879c8
+.env.local
