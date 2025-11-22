@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Fix: Replaced the problematic triple-slash directive with a standard side-effect import of 'react' to ensure its global type declarations are loaded first, resolving JSX namespace conflicts.
 // FIX: Changed import to bring React namespace into scope for type definitions and to ensure proper JSX namespace augmentation.
 import React from 'react';
@@ -64,3 +65,26 @@ declare global {
 // FIX: Add an empty export statement to ensure this file is treated as a module,
 // which is required for global namespace augmentations to be applied correctly.
 export {};
+=======
+export interface MetricData {
+  name: string;
+  value: number | string;
+  unit: string;
+  status: 'optimal' | 'warning' | 'critical' | 'active';
+  trend?: 'up' | 'down' | 'stable';
+  description: string;
+}
+
+export interface ChatMessage {
+  id: string;
+  role: 'user' | 'model';
+  text: string;
+  timestamp: Date;
+}
+
+export enum NetworkStatus {
+  ONLINE = 'ONLINE',
+  HARMONIZING = 'HARMONIZING',
+  OFFLINE = 'OFFLINE'
+}
+>>>>>>> a217f9f (Configure sovereign network resonance engine and manifest control interface)

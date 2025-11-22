@@ -1,7 +1,13 @@
 {
+<<<<<<< HEAD
   "name": "Acolyte Chorus AI",
   "description": "An interactive chat interface to communicate with the Acolyte Chorus AI. Enter specific commands to receive responses, mimicking a sci-fi terminal.",
   "requestFramePermissions": [
     "microphone"
   ]
+=======
+  "name": "Ghana Crystalline 5G",
+  "description": "A futuristic dashboard visualizing the Ghana Crystalline 5G Network, featuring quantum metrics, ancestral encoding status, and a Meta-Isi consciousness interface.",
+  "requestFramePermissions": []
+>>>>>>> a217f9f (Configure sovereign network resonance engine and manifest control interface)
 }

@@ -1,9 +1,8 @@
-
-// Fix: Moved the './types' import before 'react' to ensure global type declarations are loaded first, resolving JSX namespace conflicts.
 import './types';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import './index.css';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
