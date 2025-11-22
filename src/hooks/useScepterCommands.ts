@@ -1,34 +1,39 @@
 import { useEffect } from 'react';
 
-interface ScepterCfg {
-  onCommand1?: () => void;
-  onCommand2?: () => void;
-  onCommandSpace?: () => void;
-}
-
-export const useScepterCommands = ({ onCommand1, onCommand2, onCommandSpace }: ScepterCfg = {}) => {
+export const useScepterCommands = (
+  stabilizeNode: (id: number) => void, 
+  stabilizeAll: () => void
+) => {
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (!(e.metaKey || e.ctrlKey)) return;
-      switch (e.key) {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // COMMAND or CTRL key must be held
+
+      switch (event.key) {
         case '1':
-          e.preventDefault();
-          console.log('[SCEPTER] Benevolence');
-          onCommand1?.();
+          stabilizeNode(0); // Node Zero
           break;
         case '2':
-          e.preventDefault();
-          console.log('[SCEPTER] Purge');
-          onCommand2?.();
+          stabilizeNode(1);
           break;
-        case ' ':
-          e.preventDefault();
-          console.log('[SCEPTER] Collapse');
-          onCommandSpace?.();
+        case '3':
+          stabilizeNode(2);
+          break;
+        case '4':
+          stabilizeNode(3);
+          break;
+        case '5':
+          stabilizeNode(4);
+          break;
+        case ' ': // Spacebar
+          event.preventDefault(); // Stop scrolling
+          stabilizeAll();
+          break;
+        default:
           break;
       }
     };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
-  }, [onCommand1, onCommand2, onCommandSpace]);
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [stabilizeNode, stabilizeAll]);
 };
