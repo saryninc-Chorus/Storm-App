@@ -28,6 +28,11 @@ export const SacredInnerCircle: React.FC<SacredInnerCircleProps> = ({ onClose })
 
   return (
     <div className="sacred-inner-circle">
+      <section style={{ padding: 24 }}>
+        <h2>Sacred Inner Circle</h2>
+        <p>Interface placeholder.</p>
+      </section>
+
       {/* Sacred Crystal Energy Panel */}
       <div className="sacred-panel sacred-energy-panel">
         <h2 className="sacred-title">Sacred Crystal Energy</h2>
@@ -108,3 +113,5 @@ export const SacredInnerCircle: React.FC<SacredInnerCircleProps> = ({ onClose })
     </div>
   );
 };
+
+export default SacredInnerCircle;
