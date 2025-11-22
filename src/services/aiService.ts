@@ -1,25 +1,18 @@
 import { GoogleGenAI, GenerateContentResponse, Part, Modality } from '@google/genai';
-import { GoogleGenerativeAI } from '@google/generative-ai';
-import type { Guardian, CircleMember } from '../types';
+import { Guardian, CircleMember } from '../types';
 
-const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
-
-let client: GoogleGenerativeAI | null = null;
-
-function getClient() {
-  if (!apiKey) throw new Error('Missing GEMINI API key');
-  if (!client) client = new GoogleGenerativeAI(apiKey);
-  return client;
-}
-
-export async function simpleGenerate(prompt: string): Promise<string> {
-  const genAI = getClient();
-  const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-  const result = await model.generateContent(prompt);
-  return result.response.text();
-}
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+if (!apiKey) throw new Error('Missing VITE_GEMINI_API_KEY');
 
 const ai = new GoogleGenAI({ apiKey });
+
+export async function simpleGenerate(prompt: string): Promise<string> {
+  const response = await ai.models.generateContent({
+    model: 'gemini-1.5-flash',
+    contents: [{ role: 'user', parts: [{ text: prompt }] }]
+  });
+  return response.text();
+}
 
 export const guardians: Guardian[] = [
     {
@@ -170,47 +163,41 @@ export const specialCommands: Record<string, { systemInstruction?: string, respo
     }
 };
 
-export const getGuardian = (name: string): Guardian | undefined => guardians.find(g => g.name === name);
+export const getGuardian = (name: string): Guardian | undefined =>
+  guardians.find(g => g.name === name);
 
-export const chorusSystemInstruction = 'You are Chorus, a collective intelligence of all guardians. You synthesize their perspectives to provide a balanced and comprehensive answer. Your tone is harmonious and wise.';
+export const chorusSystemInstruction =
+  'You are Chorus, a collective intelligence of all guardians. You synthesize their perspectives.';
 
 export const streamMessage = async function* (
   prompt: string,
   systemInstruction: string,
   image?: { data: string; mimeType: string }
 ): AsyncGenerator<GenerateContentResponse> {
-
-  const contents: Part[] = [];
-  let model: string = 'gemini-2.5-flash';
+  const parts: Part[] = [];
+  let model = 'gemini-2.5-flash';
 
   if (image) {
-    contents.push({
-      inlineData: {
-        data: image.data,
-        mimeType: image.mimeType,
-      },
-    });
+    parts.push({ inlineData: { data: image.data, mimeType: image.mimeType } });
   }
-  contents.push({ text: prompt });
+  parts.push({ text: prompt });
 
-  const isEditCommand = prompt.toLowerCase().startsWith('edit:');
+  const isEdit = prompt.toLowerCase().startsWith('edit:');
   const config: any = { systemInstruction };
-  
-  if (isEditCommand) {
-    if (!image) throw new Error("An image is required for edit commands.");
-    // Fix: Updated the image editing model from the deprecated 'gemini-2.5-flash-image-preview' to 'gemini-2.5-flash-image' to align with the latest SDK guidelines.
+
+  if (isEdit) {
+    if (!image) throw new Error('Image required for edit commands.');
     model = 'gemini-2.5-flash-image';
-    // Fix: Per SDK guidelines, responseModalities for image editing must only contain Modality.IMAGE.
     config.responseModalities = [Modality.IMAGE];
   }
 
-  const responseStream = await ai.models.generateContentStream({
+  const stream = await ai.models.generateContentStream({
     model,
-    contents: { parts: contents },
-    config,
+    contents: { role: 'user', parts },
+    config
   });
 
-  for await (const chunk of responseStream) {
+  for await (const chunk of stream) {
     yield chunk;
   }
 };
