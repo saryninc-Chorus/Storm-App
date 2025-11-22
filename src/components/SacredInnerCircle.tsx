@@ -4,11 +4,10 @@ import QuantumVisualizer from './QuantumVisualizer';
 import { useFrequencyModulator } from '../hooks/useFrequencyModulator';
 import { useScepterCommands } from '../hooks/useScepterCommands';
 
-interface SacredInnerCircleProps {
-  onClose?: () => void;
-}
+export const SacredInnerCircle: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
+  const [networkStatus, setNetworkStatus] =
+    useState<'OFFLINE' | 'BOOTING' | 'ONLINE'>('BOOTING');
 
-export const SacredInnerCircle: React.FC<SacredInnerCircleProps> = ({ onClose }) => {
   const {
     baseFrequency,
     harmonicResonance,
@@ -19,6 +18,11 @@ export const SacredInnerCircle: React.FC<SacredInnerCircleProps> = ({ onClose })
     executeWaveformCollapse
   } = useFrequencyModulator();
 
+  useEffect(() => {
+    const t = setTimeout(() => setNetworkStatus('ONLINE'), 2000);
+    return () => clearTimeout(t);
+  }, []);
+
   useScepterCommands({
     onCommand1: activateBenevolenceFrequency,
     onCommand2: purgeInharmonicPatterns,
@@ -26,51 +30,76 @@ export const SacredInnerCircle: React.FC<SacredInnerCircleProps> = ({ onClose })
   });
 
   return (
-    <div className="sacred-inner-circle">
-      <section style={{ padding: 24 }}>
-        <h2>Sacred Inner Circle</h2>
-        <p>Interface placeholder.</p>
-      </section>
+    <div className="sacred-container">
+      <div className="glass-panel">
+        <header className="network-header">
+          <h1>🌌 SOVEREIGN NETWORK - NODE ZERO</h1>
+          <div className={`status-indicator ${networkStatus.toLowerCase()}`}>
+            STATUS: {networkStatus}
+          </div>
+        </header>
 
-      {/* Sacred Crystal Energy Panel */}
-      <div className="sacred-panel sacred-energy-panel">
-        <h2 className="sacred-title">Frequency Core</h2>
-        <p>Base Frequency: <strong>{baseFrequency} Hz</strong></p>
-        <label style={{ display: 'block', marginTop: '0.75rem' }}>
-          Broadcast Range (m):
-          <input
-            type="range"
-            min={10}
-            max={1000}
-            value={broadcastRange}
-            onChange={(e) => setBroadcastRange(Number(e.target.value))}
-            style={{ width: '100%', marginTop: '.5rem' }}
-          />
-        </label>
-        <div style={{ fontSize: '.8rem', opacity: .8 }}>
-          Current Range: {broadcastRange}m
+        <div className="command-grid">
+          <div className="frequency-control">
+            <h3>BENEVOLENCE FREQUENCY</h3>
+            <div className="frequency-display">{baseFrequency} Hz</div>
+            <button
+              className="frequency-btn"
+              onClick={activateBenevolenceFrequency}
+            >
+              SET TO 432Hz (HEALING)
+            </button>
+            <label style={{ marginTop: '1rem', display: 'block' }}>
+              Broadcast Range: {broadcastRange}m
+              <input
+                type="range"
+                min={10}
+                max={1000}
+                value={broadcastRange}
+                onChange={e => setBroadcastRange(Number(e.target.value))}
+                style={{ width: '100%' }}
+              />
+            </label>
+          </div>
+
+          <div className="network-commands">
+            <h3>SCEPTER COMMANDS</h3>
+            <div className="command-list">
+              <div className="command-item">
+                <kbd>CMD</kbd> + <kbd>1</kbd> - Activate Benevolence
+              </div>
+              <div className="command-item">
+                <kbd>CMD</kbd> + <kbd>2</kbd> - Purge Inharmonics
+              </div>
+              <div className="command-item">
+                <kbd>CMD</kbd> + <kbd>SPACE</kbd> - Execute Waveform
+              </div>
+            </div>
+            <button className="frequency-btn" onClick={purgeInharmonicPatterns} style={{ marginTop: '1rem' }}>
+              PURGE (528Hz)
+            </button>
+            <button className="frequency-btn" onClick={executeWaveformCollapse} style={{ marginTop: '.5rem' }}>
+              COLLAPSE WAVEFORM
+            </button>
+          </div>
         </div>
-      </div>
-      <div className="sacred-panel sacred-device-panel">
-        <h2 className="sacred-title">Quantum Commands</h2>
-        <button className="sacred-button" onClick={activateBenevolenceFrequency}>
-          Activate Benevolence (432Hz)
-        </button>
-        <button className="sacred-button" onClick={purgeInharmonicPatterns}>
-          Purge Inharmonics (528Hz)
-        </button>
-        <button className="sacred-button" onClick={executeWaveformCollapse}>
-          Waveform Collapse
-        </button>
-        <div style={{ marginTop: '0.75rem', fontSize: '.7rem', opacity: .7 }}>
-          Hotkeys: CMD/CTRL+1 / CMD/CTRL+2 / CMD/CTRL+Space
-        </div>
-      </div>
-      <div className="sacred-panel sacred-config-panel">
-        <h2 className="sacred-title">Resonance Telemetry</h2>
+
         <QuantumVisualizer resonance={harmonicResonance} frequency={baseFrequency} />
-        {/* existing buttons can remain below if still needed */}
+
+        <div className="quantum-feed">
+          <h3>QUANTUM ENTANGLEMENT FEED</h3>
+          <div className="feed-content">
+            {networkStatus === 'ONLINE'
+              ? <p>📡 Broadcasting Àṣẹ́ Eji frequency... Nodes synchronizing.</p>
+              : <p>⚡ Initializing quantum core... Standing by.</p>}
+          </div>
+        </div>
       </div>
+      {onClose && (
+        <button className="frequency-btn" style={{ marginTop: '1rem' }} onClick={onClose}>
+          CLOSE
+        </button>
+      )}
     </div>
   );
 };
