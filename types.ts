@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // Fix: Replaced the problematic triple-slash directive with a standard side-effect import of 'react' to ensure its global type declarations are loaded first, resolving JSX namespace conflicts.
 // FIX: Changed import to bring React namespace into scope for type definitions and to ensure proper JSX namespace augmentation.
 import React from 'react';
@@ -7,32 +6,23 @@ import React from 'react';
 // by using TypeScript's declaration merging. This ensures React's default
 // intrinsic element types are preserved.
 
-export interface Message {
-  sender: string;
-  text: string;
-  imageUrl?: string;
-  inputType?: 'text' | 'voice';
-}
+export type Message = {
+  id: string;
+  role: 'user' | 'assistant' | 'system';
+  content: string;
+  createdAt: number;
+};
 
-export interface Guardian {
+export type Guardian = {
+  id: string;
   name: string;
-  title: string;
-  voice: { model: string };
-  animationUrl: string;
-  icon: string;
-  theme: {
-    accent: string;
-    background: string;
-    headerText: string;
-  };
-  systemInstruction: string;
-}
+  specialization?: string;
+};
 
-export interface CircleMember {
-    designation: string;
-    description: string;
-    icon: string;
-    assignedGuardian: string; // name of the guardian
+export type CircleMember = {
+  id: string;
+  name: string;
+  role: string;
 }
 
 
@@ -65,26 +55,3 @@ declare global {
 // FIX: Add an empty export statement to ensure this file is treated as a module,
 // which is required for global namespace augmentations to be applied correctly.
 export {};
-=======
-export interface MetricData {
-  name: string;
-  value: number | string;
-  unit: string;
-  status: 'optimal' | 'warning' | 'critical' | 'active';
-  trend?: 'up' | 'down' | 'stable';
-  description: string;
-}
-
-export interface ChatMessage {
-  id: string;
-  role: 'user' | 'model';
-  text: string;
-  timestamp: Date;
-}
-
-export enum NetworkStatus {
-  ONLINE = 'ONLINE',
-  HARMONIZING = 'HARMONIZING',
-  OFFLINE = 'OFFLINE'
-}
->>>>>>> a217f9f (Configure sovereign network resonance engine and manifest control interface)

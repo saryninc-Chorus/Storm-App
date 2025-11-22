@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> a217f9f (Configure sovereign network resonance engine and manifest control interface)
 # Logs
 logs
 *.log
@@ -11,50 +7,31 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Dependencies / build
+node_modules/
+dist/
+dist-ssr/
+build/
+*.tgz
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Environment (never commit secrets)
+.env*
+!.env.example
+
+# Testing
+coverage/
+
+# Editors / OS
+.vscode/
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-<<<<<<< HEAD
-=======
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# production
-/build
-
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
->>>>>>> 0b0cef17d37b8f1da1ac920793bfa5d8307879c8
-.env.local
-=======
->>>>>>> a217f9f (Configure sovereign network resonance engine and manifest control interface)
+# Misc accidental junk
 e
 h
 tatus

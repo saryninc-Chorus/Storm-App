@@ -1,7 +1,24 @@
 import { GoogleGenAI, GenerateContentResponse, Part, Modality } from '@google/genai';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import type { Guardian, CircleMember } from '../types';
 
-const apiKey = import.meta.env.VITE_GEMINI_API_KEY || 'placeholder';
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
+
+let client: GoogleGenerativeAI | null = null;
+
+function getClient() {
+  if (!apiKey) throw new Error('Missing GEMINI API key');
+  if (!client) client = new GoogleGenerativeAI(apiKey);
+  return client;
+}
+
+export async function simpleGenerate(prompt: string): Promise<string> {
+  const genAI = getClient();
+  const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+  const result = await model.generateContent(prompt);
+  return result.response.text();
+}
+
 const ai = new GoogleGenAI({ apiKey });
 
 export const guardians: Guardian[] = [
