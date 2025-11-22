@@ -1,25 +1,41 @@
-.quantum-visualizer {
-  background: rgba(30,41,59,0.4);
-  padding: 1rem 1.25rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.06);
-  margin-top: 1.25rem;
+.quantum-viz {
+  margin: 30px 0;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  border: 1px solid rgba(0, 255, 255, 0.3);
 }
-.frequency-bar {
-  height: 14px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 8px;
-  overflow: hidden;
-  margin: .5rem 0 .75rem;
+
+.quantum-viz h3 {
+  color: #00ffff;
+  margin: 0 0 15px 0;
+  text-align: center;
 }
-.resonance-fill {
-  height: 100%;
-  background: linear-gradient(90deg,#3b82f6,#8b5cf6);
-  transition: width .45s ease;
-}
-.frequency-info {
+
+.viz-container {
   display: flex;
-  justify-content: space-between;
-  font-size: .75rem;
-  color: #c7d2fe;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.frequency-bar {
+  width: 100%;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.frequency-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ff88, #00ccff);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.resonance-display {
+  text-align: center;
+  color: #00ff88;
+  font-family: monospace;
+  font-size: 1.1em;
 }

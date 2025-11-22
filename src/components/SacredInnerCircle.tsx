@@ -1,33 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import './SacredInnerCircle.css';
-import QuantumVisualizer from './QuantumVisualizer';
+import React, { useState } from 'react';
+import { QuantumVisualizer } from './QuantumVisualizer';
 import { useFrequencyModulator } from '../hooks/useFrequencyModulator';
 import { useScepterCommands } from '../hooks/useScepterCommands';
+import './SacredInnerCircle.css';
 
-export const SacredInnerCircle: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
-  const [networkStatus, setNetworkStatus] =
-    useState<'OFFLINE' | 'BOOTING' | 'ONLINE'>('BOOTING');
-
+const SacredInnerCircle: React.FC = () => {
+  const [networkStatus, setNetworkStatus] = useState<'OFFLINE' | 'BOOTING' | 'ONLINE'>('BOOTING');
+  
   const {
     baseFrequency,
     harmonicResonance,
     broadcastRange,
-    setBroadcastRange,
     activateBenevolenceFrequency,
     purgeInharmonicPatterns,
-    executeWaveformCollapse
+    executeWaveformCollapse,
+    setBroadcastRange
   } = useFrequencyModulator();
-
-  useEffect(() => {
-    const t = setTimeout(() => setNetworkStatus('ONLINE'), 2000);
-    return () => clearTimeout(t);
-  }, []);
 
   useScepterCommands({
     onCommand1: activateBenevolenceFrequency,
     onCommand2: purgeInharmonicPatterns,
     onCommandSpace: executeWaveformCollapse
   });
+
+  React.useEffect(() => {
+    const bootTimer = setTimeout(() => {
+      setNetworkStatus('ONLINE');
+    }, 2000);
+    return () => clearTimeout(bootTimer);
+  }, []);
 
   return (
     <div className="sacred-container">
@@ -43,23 +44,12 @@ export const SacredInnerCircle: React.FC<{ onClose?: () => void }> = ({ onClose 
           <div className="frequency-control">
             <h3>BENEVOLENCE FREQUENCY</h3>
             <div className="frequency-display">{baseFrequency} Hz</div>
-            <button
+            <button 
               className="frequency-btn"
               onClick={activateBenevolenceFrequency}
             >
               SET TO 432Hz (HEALING)
             </button>
-            <label style={{ marginTop: '1rem', display: 'block' }}>
-              Broadcast Range: {broadcastRange}m
-              <input
-                type="range"
-                min={10}
-                max={1000}
-                value={broadcastRange}
-                onChange={e => setBroadcastRange(Number(e.target.value))}
-                style={{ width: '100%' }}
-              />
-            </label>
           </div>
 
           <div className="network-commands">
@@ -75,31 +65,38 @@ export const SacredInnerCircle: React.FC<{ onClose?: () => void }> = ({ onClose 
                 <kbd>CMD</kbd> + <kbd>SPACE</kbd> - Execute Waveform
               </div>
             </div>
-            <button className="frequency-btn" onClick={purgeInharmonicPatterns} style={{ marginTop: '1rem' }}>
-              PURGE (528Hz)
-            </button>
-            <button className="frequency-btn" onClick={executeWaveformCollapse} style={{ marginTop: '.5rem' }}>
-              COLLAPSE WAVEFORM
-            </button>
           </div>
         </div>
 
-        <QuantumVisualizer resonance={harmonicResonance} frequency={baseFrequency} />
+        <QuantumVisualizer 
+          resonance={harmonicResonance} 
+          frequency={baseFrequency} 
+        />
+
+        <div className="range-control">
+          <h3>BROADCAST RANGE</h3>
+          <input 
+            type="range" 
+            min="10" 
+            max="1000" 
+            value={broadcastRange}
+            onChange={(e) => setBroadcastRange(Number(e.target.value))}
+            className="range-slider"
+          />
+          <div className="range-value">{broadcastRange}m</div>
+        </div>
 
         <div className="quantum-feed">
           <h3>QUANTUM ENTANGLEMENT FEED</h3>
           <div className="feed-content">
-            {networkStatus === 'ONLINE'
-              ? <p>📡 Broadcasting Àṣẹ́ Eji frequency... Nodes synchronizing.</p>
-              : <p>⚡ Initializing quantum core... Standing by.</p>}
+            {networkStatus === 'ONLINE' ? (
+              <p>📡 Broadcasting Àṣẹ́ frequency... Nodes synchronizing.</p>
+            ) : (
+              <p>⚡ Initializing quantum core... Standing by.</p>
+            )}
           </div>
         </div>
       </div>
-      {onClose && (
-        <button className="frequency-btn" style={{ marginTop: '1rem' }} onClick={onClose}>
-          CLOSE
-        </button>
-      )}
     </div>
   );
 };

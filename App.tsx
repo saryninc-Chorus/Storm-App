@@ -1,13 +1,11 @@
 import React from 'react';
 import SacredInnerCircle from './components/SacredInnerCircle';
-// Storm components temporarily disabled
-// import StormInterface from './components/StormInterface';
+import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="app-container">
       <SacredInnerCircle />
-      {/* <StormInterface /> */}
     </div>
   );
 }
